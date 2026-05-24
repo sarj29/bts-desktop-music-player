@@ -1,0 +1,617 @@
+/* BTS pixel player — layout uses % of 1402×1122 design canvas */
+
+.player {
+  --z-bg: 0;
+  --z-chibi: 1;
+  --z-frame: 2;
+  --z-frame-drag: 4;
+  --z-ui: 5;
+  --z-vinyl: 5;
+  --z-song: 6;
+  --z-progress: 7;
+  --z-time: 8;
+  --z-charms: 9;
+  --z-volume: 10;
+  --z-controls: 11;
+  --z-win-visual: 12;
+  --z-hits: 20;
+  --z-chrome: 35;
+  --z-settings: 100;
+
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+.player-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Layer containers ───────────────────────────────────── */
+.player-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.player-layer-bg {
+  z-index: var(--z-bg);
+}
+
+.player-layer-chibi {
+  z-index: var(--z-chibi);
+}
+
+.player-layer-frame {
+  z-index: var(--z-frame);
+}
+
+.player-layer-ui {
+  z-index: var(--z-ui);
+}
+
+.pixel-layer,
+.player-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  image-rendering: pixelated;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Chibis (layer 2 — behind frame) ───────────────────── */
+.chibi-row {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.chibi-row .chibi-sprite {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  image-rendering: pixelated;
+}
+
+/* ── Frame (layer 3 — shell only) ──────────────────────── */
+.player-frame {
+  position: absolute;
+  inset: 0;
+  /* Make the visible frame image act as the draggable titlebar */
+  -webkit-app-region: drag;
+  pointer-events: auto;
+  user-select: none;
+  cursor: grab;
+}
+
+/* Custom titlebar drag target restricted to top 8.5% height */
+.frame-drag-region {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8.5%;
+  z-index: var(--z-frame-drag);
+  -webkit-app-region: drag;
+  pointer-events: auto;
+}
+
+/* ── Vinyl ─────────────────────── */
+
+.vinyl-wrap {
+  position: absolute;
+
+  left: -17%;
+  top: -12%;
+
+  width: 98%;
+  aspect-ratio: 1 / 1;
+
+  z-index: var(--z-vinyl);
+  -webkit-app-region: no-drag;
+  pointer-events: auto;
+}
+
+.vinyl-wrap .vinyl-disc {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  transform-origin: center center;
+}
+
+.vinyl-wrap:hover .vinyl-disc {
+  filter: brightness(1.18) drop-shadow(0 0 2px var(--glow-color));
+}
+
+.vinyl-spinning .vinyl-disc {
+  animation: vinyl-rotate 4s linear infinite;
+}
+
+@keyframes vinyl-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Song info (layer 4 — screen right) ────────────────── */
+.song-info {
+  position: absolute;
+  left: 47%;
+  top: 40%;
+  width: 45%;
+  height: 40%;
+  z-index: var(--z-song);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.35em;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.song-label {
+  font-family: 'Rainyhearts', monospace;
+  font-size: clamp(12px, 1.5vw, 18px);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.song-title {
+  font-family: 'Rainyhearts', monospace;
+  font-size: clamp(20px, 3.5vw, 38px);
+  color: #ffffff;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.marquee-container {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: marquee 12s linear infinite;
+}
+
+@keyframes marquee {
+  1%, 15% { transform: translateX(0); }
+  85%, 100% { transform: translateX(-100%); }
+}
+
+.song-artist {
+  font-family: 'Rainyhearts', monospace;
+  font-size: clamp(11px, 1.5vw, 17px);
+  color: var(--color-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-album {
+  font-family: 'Rainyhearts', monospace;
+  font-size: clamp(10px, 1.2vw, 16px);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Progress (layer 4 — screen bottom) ────────────────── */
+.progress-bar-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-progress);
+  pointer-events: none;
+}
+
+.progress-fill-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.progress-bar-wrap .progress-thumb {
+  inset: auto;
+  top: 52.8%;
+  width: 2.6%;
+  height: 3.2%;
+  object-fit: contain;
+  left: calc(13.5% + (72% * var(--thumb-pct, 0)));
+  transform: translateX(-50%);
+}
+
+.progress-seek {
+  position: absolute;
+  left: 48%;
+  top: 60%;
+  width: 32%;
+  height: 1%;
+  z-index: var(--z-hits);
+  cursor: pointer;
+  pointer-events: auto;
+  outline: solid 1px;
+  border: none;
+  background: transparent;
+  -webkit-app-region: no-drag;
+}
+
+/* ── Timestamps (layer 4) ──────────────────────────────── */
+.time-display {
+  position: absolute;
+  left: 47%;
+  top: 63%;
+  width: 33.8%;
+  display: flex;
+  justify-content: space-between;
+  z-index: var(--z-time);
+  pointer-events: none;
+  font-family: 'Rainyhearts', monospace;
+  font-size: clamp(12px, 1.2vw, 18px);
+  color: #ffffff;
+}
+
+/* ── Playback controls (layer 4) ───────────────────────── */
+.controls-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-controls);
+  pointer-events: none;
+}
+
+.ctrl-visual {
+  pointer-events: none;
+  transition: filter 0.1s ease, transform 0.1s ease;
+}
+
+.controls-wrap:has(.hit-prev:hover) .btn-prev-visual,
+.controls-wrap:has(.hit-next:hover) .btn-next-visual,
+.controls-wrap:has(.hit-loop:hover) .btn-loop-visual {
+  filter: brightness(1.18) drop-shadow(0 0 6px var(--glow-color));
+}
+
+.controls-wrap:has(.hit-prev:active) .btn-prev-visual,
+.controls-wrap:has(.hit-next:active) .btn-next-visual,
+.controls-wrap:has(.hit-loop:active) .btn-loop-visual,
+.controls-wrap:has(.hit-play:active) .btn-play-visual {
+  filter: brightness(0.88);
+  transform: scale(0.97);
+}
+
+.controls-wrap:has(.hit-play:hover) .btn-play-visual {
+  filter: brightness(1.15) drop-shadow(0 0 8px var(--glow-color));
+}
+
+.btn-loop-visual.active {
+  filter: brightness(1.8) drop-shadow(0 0 4px var(--glow-color));
+}
+
+/* ── Charms (layer 4) ──────────────────────────────────── */
+.charms-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-charms);
+  pointer-events: none;
+}
+
+.charm {
+  position: absolute;
+  inset: 0;
+  animation: charm-sway 4s ease-in-out infinite;
+  transform-origin: 40% 0%;
+  pointer-events: none;
+}
+
+.charm-guitar {
+  animation-delay: 0.1s;
+}
+
+.charm-lollipop {
+  animation-delay: 1.5s;
+}
+
+@keyframes charm-sway {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+/* ── Volume (layer 4 — left side) ──────────────────────── */
+.volume-control {
+  position: absolute;
+  left: 11%;
+  top: 33.5%;
+  width: 4%;
+  height: 22%;
+  z-index: var(--z-volume);
+  pointer-events: auto;
+  overflow: visible;
+}
+
+/* Main slider background PNG — position relative to the control */
+.vol-track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* place just under the volume-down image */
+  z-index: 9;
+  pointer-events: none;
+  /* ensure visible even if other rules try to hide it */
+  opacity: 1 !important;
+  display: block !important;
+  object-position: center;
+}
+
+/* Draggable thumb wrapper */
+.volume-thumb-wrap {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 22%;
+  bottom: calc(var(--vol-level) * 78%);
+  /* keep thumb above track */
+  z-index: 11;
+  overflow: hidden;
+}
+
+/* Volume down PNG */
+.vol-thumb {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(1.2);
+  transform-origin: 0 0;
+  pointer-events: none;
+  /* ensure the volume-down image renders above the slider */
+  z-index: 12;
+}
+
+/* Actual draggable hit area */
+.volume-thumb-hit {
+  position: absolute;
+  inset: 0;
+  cursor: ns-resize;
+  z-index: 20;
+  background: transparent;
+}
+
+/* Invisible rail interaction area */
+.volume-rail {
+  position: absolute;
+  left: 35%;
+  top: 5%;
+  width: 30%;
+  height: 90%;
+  z-index: 15;
+  cursor: ns-resize;
+  background: transparent;
+}
+
+/* ── Hit targets (invisible — PNG is the only visible control) ─ */
+.hit{
+  position: absolute;
+  z-index: var(--z-hits);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-app-region: no-drag;
+  border: solid 1px;
+}
+
+
+.hit:hover,
+.hit:focus,
+.hit:focus-visible,
+.hit:active {
+  outline: none;
+  border: solid 1px;
+  box-shadow: none;
+  background: transparent;
+}
+
+.hit-prev { left: 21.6%; top: 73.3%; width: 9%; height: 9%; }
+.hit-play { left: 43.2%; top: 69.9%; width: 14%; height: 15%; }
+.hit-next { left: 69.8%; top: 73.3%; width: 9%; height: 9%; }
+.hit-loop { left: 76%; top: 54%; width: 4%; height: 4%; }
+
+/* ── Window controls (layer 4) ─────────────────────────── */
+.window-controls {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-win-visual);
+  pointer-events: none;
+}
+
+.win-visual {
+  pointer-events: none;
+  transition: filter 0.1s ease, transform 0.1s ease;
+}
+
+.window-controls:has(.hit-minimize:hover) .win-minimize-visual,
+.window-controls:has(.hit-maximize:hover) .win-maximize-visual,
+.window-controls:has(.hit-playlist:hover) .win-playlist-visual {
+  filter: brightness(1.2);
+}
+
+.window-controls:has(.hit-close:hover) .win-close-visual {
+  filter: brightness(1.2);
+}
+
+.window-controls:has(.hit-playlist:active) .win-playlist-visual {
+  filter: brightness(1.2);
+}
+
+.window-controls:has(.hit-minimize:active) .win-minimize-visual,
+.window-controls:has(.hit-maximize:active) .win-maximize-visual{
+  filter: brightness(0.85);
+}
+
+.window-controls:has(.hit-close:active) .win-close-visual,
+.window-controls:has(.hit-playlist:active) .win-playlist-visual {
+  filter: brightness(0.8);
+}
+
+.hit-playlist { right: 38%; top: 25.1%; width: 24%; height: 3%; }
+.hit-minimize { right: 20.8%; top: 25.1%; width: 3.5%; height: 5%; }
+.hit-maximize { right: 15.2%; top: 25.1%; width: 3.5%; height: 5%; }
+.hit-close { right: 10%; top: 25.1%; width: 3.5%; height: 5%; }
+
+/* ── Window chrome (above UI) ──────────────────────────── */
+.window-title {
+  position: absolute;
+  left: 8%;
+  top: 3.5%;
+  font-family: 'Rainyhearts', monospace;
+  font-size: clamp(12px, 2vw, 18px);
+  color: var(--color-title);
+  z-index: var(--z-chrome);
+}
+
+/* Interactive regions opt out of window drag */
+.window-controls,
+.win-btn,
+.window-controls *,
+.hit,
+.progress-seek,
+.volume-rail,
+.volume-thumb-hit,
+.settings-panel,
+.settings-panel *,
+.resize-handle,
+.resize-edge,
+.settings-btn,
+.settings-input {
+  -webkit-app-region: no-drag;
+}
+
+/* ── Resize (corners + edges) ──────────────────────────── */
+.resize-handle,
+.resize-edge {
+  position: absolute;
+  z-index: 50;
+  -webkit-app-region: no-drag;
+  background: transparent;
+}
+
+.resize-handle.corner {
+  width: 22px;
+  height: 22px;
+}
+
+.resize-handle.corner.top-left { top: 0; left: 0; cursor: nwse-resize; }
+.resize-handle.corner.top-right { top: 0; right: 0; cursor: nesw-resize; }
+.resize-handle.corner.bottom-left { bottom: 0; left: 0; cursor: nesw-resize; }
+.resize-handle.corner.bottom-right { bottom: 0; right: 0; cursor: nwse-resize; }
+
+
+/* ── Settings panel ──────────────────────────────────────── */
+.settings-panel {
+  position: absolute;
+  top: 14%;
+  right: 4%;
+  z-index: var(--z-settings);
+  -webkit-app-region: no-drag;
+  pointer-events: auto;
+  max-width: min(240px, 42vw);
+}
+
+.settings-panel-inner {
+  background: var(--color-panel-bg);
+  border: 2px solid var(--color-panel-border);
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+.settings-label {
+  font-family: 'Rainyhearts', monospace;
+  font-size: 12px;
+  color: var(--color-panel-text);
+}
+
+.settings-input {
+  font-family: 'Rainyhearts', monospace;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--color-panel-border);
+  border-radius: 2px;
+  color: var(--color-panel-text);
+  padding: 6px;
+  outline: none;
+  width: 100%;
+}
+
+.settings-btn {
+  font-family: 'Rainyhearts', monospace;
+  font-size: 12px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 2px;
+  color: var(--color-panel-text);
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+.settings-btn:hover:not(:disabled) {
+  filter: brightness(1.15);
+  box-shadow: 0 0 8px var(--glow-color);
+}
+
+.settings-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.settings-preset-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.settings-btn.preset {
+  flex: 1 1 45%;
+  font-size: 9px;
+}
+
+.settings-hint {
+  font-family: 'Rainyhearts', monospace;
+  font-size: 8px;
+  color: var(--color-secondary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.settings-error {
+  font-family: 'Rainyhearts', monospace;
+  font-size: 9px;
+  color: #ff6b6b;
+}

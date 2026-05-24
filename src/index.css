@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Rainyhearts';
+  src: url('../font/rainyhearts.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  font-family: 'Rainyhearts', monospace;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+* {
+  box-sizing: border-box;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Image-based controls: no default browser button chrome */
+.player .hit{
+  font: inherit;
+  color: inherit;
+  border: solid 1px;
+}
+
+.player .volume-thumb-hit {
+  font: inherit;
+  color: inherit;
+  border: solid 1px;
+}
+
+.player button:focus,
+.player button:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
