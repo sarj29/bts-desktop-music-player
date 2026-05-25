@@ -4,7 +4,7 @@
   --z-bg: 0;
   --z-chibi: 1;
   --z-frame: 2;
-  --z-frame-drag: 10;
+  --z-frame-drag: 4;
   --z-ui: 5;
   --z-vinyl: 5;
   --z-song: 6;
@@ -97,7 +97,7 @@
 .frame-drag-region {
   position: absolute;
   inset: 0;
-  z-index: 15;
+  z-index: 4;
   -webkit-app-region: drag;
   pointer-events: auto;
   background: transparent;
