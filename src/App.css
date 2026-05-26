@@ -136,8 +136,13 @@
 }
 
 @keyframes vinyl-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ── Song info (layer 4 — screen right) ────────────────── */
@@ -153,7 +158,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  
+
   pointer-events: none;
   overflow: hidden;
 }
@@ -192,11 +197,14 @@
 }
 
 @keyframes marquee {
-  0%, 18% {
+
+  0%,
+  18% {
     transform: translateX(0);
   }
 
-  82%, 100% {
+  82%,
+  100% {
     transform: translateX(-90%);
   }
 }
@@ -260,6 +268,7 @@
   background: transparent;
   -webkit-app-region: no-drag;
 }
+
 
 /* ── Timestamps (layer 4) ──────────────────────────────── */
 .time-display {
@@ -336,8 +345,15 @@
 }
 
 @keyframes charm-sway {
-  0%, 100% { transform: rotate(-1deg); }
-  50% { transform: rotate(1deg); }
+
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
 }
 
 /* ── Volume (layer 4 — left side) ──────────────────────── */
@@ -386,7 +402,7 @@
   height: 100%;
   object-fit: contain;
   transform: scale(1.5);
-  
+
   pointer-events: none;
   /* ensure the volume-down image renders above the slider */
   z-index: 15;
@@ -410,11 +426,11 @@
   z-index: 12;
   cursor: ns-resize;
   background: grey;
-  border-radius: 10%;
+  border-radius: 5%;
 }
 
 /* ── Hit targets (invisible — PNG is the only visible control) ─ */
-.hit{
+.hit {
   position: absolute;
   z-index: var(--z-hits);
   margin: 0;
@@ -439,10 +455,33 @@
   background: transparent;
 }
 
-.hit-prev { left: 21.6%; top: 73.3%; width: 9%; height: 9%; }
-.hit-play { left: 43.2%; top: 69.9%; width: 14%; height: 15%; }
-.hit-next { left: 69.8%; top: 73.3%; width: 9%; height: 9%; }
-.hit-loop { left: 76%; top: 54%; width: 4%; height: 4%; }
+.hit-prev {
+  left: 21.6%;
+  top: 73.3%;
+  width: 9%;
+  height: 9%;
+}
+
+.hit-play {
+  left: 43.2%;
+  top: 69.9%;
+  width: 14%;
+  height: 15%;
+}
+
+.hit-next {
+  left: 69.8%;
+  top: 73.3%;
+  width: 9%;
+  height: 9%;
+}
+
+.hit-loop {
+  left: 76%;
+  top: 54%;
+  width: 4%;
+  height: 4%;
+}
 
 /* ── Window controls (layer 4) ─────────────────────────── */
 .window-controls {
@@ -472,7 +511,7 @@
 }
 
 .window-controls:has(.hit-minimize:active) .win-minimize-visual,
-.window-controls:has(.hit-maximize:active) .win-maximize-visual{
+.window-controls:has(.hit-maximize:active) .win-maximize-visual {
   filter: brightness(0.85);
 }
 
@@ -481,10 +520,33 @@
   filter: brightness(0.8);
 }
 
-.hit-playlist { right: 38%; top: 25.1%; width: 24%; height: 3%; }
-.hit-minimize { right: 20.8%; top: 25.1%; width: 3.5%; height: 5%; }
-.hit-maximize { right: 15.2%; top: 25.1%; width: 3.5%; height: 5%; }
-.hit-close { right: 10%; top: 25.1%; width: 3.5%; height: 5%; }
+.hit-playlist {
+  right: 38%;
+  top: 25.1%;
+  width: 24%;
+  height: 3%;
+}
+
+.hit-minimize {
+  right: 20.8%;
+  top: 25.1%;
+  width: 3.5%;
+  height: 5%;
+}
+
+.hit-maximize {
+  right: 15.2%;
+  top: 25.1%;
+  width: 3.5%;
+  height: 5%;
+}
+
+.hit-close {
+  right: 10%;
+  top: 25.1%;
+  width: 3.5%;
+  height: 5%;
+}
 
 /* ── Window chrome (above UI) ──────────────────────────── */
 .window-title {
@@ -530,10 +592,29 @@
   height: 22px;
 }
 
-.resize-handle.corner.top-left { top: 0; left: 0; cursor: nwse-resize; }
-.resize-handle.corner.top-right { top: 0; right: 0; cursor: nesw-resize; }
-.resize-handle.corner.bottom-left { bottom: 0; left: 0; cursor: nesw-resize; }
-.resize-handle.corner.bottom-right { bottom: 0; right: 0; cursor: nwse-resize; }
+.resize-handle.corner.top-left {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.resize-handle.corner.top-right {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.resize-handle.corner.bottom-left {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+.resize-handle.corner.bottom-right {
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+}
 
 
 /* ── Settings panel ──────────────────────────────────────── */
