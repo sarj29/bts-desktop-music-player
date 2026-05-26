@@ -58,16 +58,12 @@ export default function VolumeSlider({
       className={`volume-control ${dragging ? 'is-dragging' : ''}`}
       style={{ '--vol-level': level }}
     >
-      <img
+      <PixelImage
           src={volumeSliderSrc}
           className="vol-track"
           alt=""
-          style={{
-            border: "2px solid red",
-            background: "lime"
-          }}
         />
-    
+      
       <div className="volume-thumb-wrap">
         <PixelImage src={volumeDownSrc} className="vol-thumb" alt="" />
         <div

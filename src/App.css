@@ -344,13 +344,14 @@
 /* ── Volume (layer 4 — left side) ──────────────────────── */
 .volume-control {
   position: absolute;
-  left: 11%;
-  top: 33.5%;
-  width: 4%;
-  height: 22%;
+  left: 11.6%;
+  top: 33.4%;
+  width: 3.5%;
+  height: 21.8%;
   z-index: var(--z-volume);
   pointer-events: auto;
   overflow: visible;
+  border: solid 1px black;
 }
 
 /* Main slider background PNG — position relative to the control */
@@ -359,13 +360,11 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
   /* place just under the volume-down image */
-  z-index: 9;
+  z-index: 10;
   pointer-events: none;
   /* ensure visible even if other rules try to hide it */
-  opacity: 1 !important;
-  display: block !important;
+  opacity: 1;
   object-position: center;
 }
 
@@ -374,11 +373,10 @@
   position: absolute;
   left: 0;
   width: 100%;
-  height: 22%;
+  height: 18%;
   bottom: calc(var(--vol-level) * 78%);
   /* keep thumb above track */
   z-index: 11;
-  overflow: hidden;
 }
 
 /* Volume down PNG */
@@ -389,8 +387,8 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform: scale(1.2);
-  transform-origin: 0 0;
+  transform: scale(1.5);
+  
   pointer-events: none;
   /* ensure the volume-down image renders above the slider */
   z-index: 12;
@@ -402,19 +400,19 @@
   inset: 0;
   cursor: ns-resize;
   z-index: 20;
-  background: transparent;
 }
 
 /* Invisible rail interaction area */
 .volume-rail {
   position: absolute;
-  left: 35%;
+  left: 35.8%;
   top: 5%;
   width: 30%;
   height: 90%;
   z-index: 15;
   cursor: ns-resize;
   background: transparent;
+  border: solid 1px;
 }
 
 /* ── Hit targets (invisible — PNG is the only visible control) ─ */
