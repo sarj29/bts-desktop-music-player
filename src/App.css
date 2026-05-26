@@ -331,20 +331,37 @@
 .charm {
   position: absolute;
   inset: 0;
-  animation: charm-sway 4s ease-in-out infinite;
-  transform-origin: 40% 0%;
   pointer-events: none;
 }
 
 .charm-guitar {
+  top: -1%;
   animation-delay: 0.1s;
+  animation: gu-charm-sway 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+@keyframes gu-charm-sway {
+  0%, 100% {
+    transform:
+      rotate(-0.7deg)
+      translateY(1px);
+  }
+
+  50% {
+    transform:
+      rotate(0.7deg)
+      translateY(-1px);
+  }
 }
 
 .charm-lollipop {
   animation-delay: 1.5s;
+  transform-origin: 40% 0%;
+  animation: loll-charm-sway 4s ease-in-out infinite;
 }
 
-@keyframes charm-sway {
+@keyframes loll-charm-sway {
 
   0%,
   100% {
