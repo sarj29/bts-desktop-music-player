@@ -36,7 +36,7 @@ export const BTS_PRESET_PLAYLISTS = [
   { id: 'be', name: 'BE', url: 'https://youtube.com/playlist?list=PLvwxw_LiHMjhKgL7AjgOWUzI79xNDC2YM&si=q8-_dEXDR2E5AsDh' },
   { id: 'ly', name: 'Love Yourself', url: '' },
   { id: 'wings', name: 'Wings', url: '' },
-  { id: 'daw', name: 'Dark & Wild', url: '' },
+  { id: 'daw', name: 'Dark & Wild', url: 'https://youtube.com/playlist?list=PLgNAVqTsP7oe-NnLTHZAmRrakj6spxn6V&si=I61bH3pATTb5plvH' },
 ];
 
 const defaultTheme = {

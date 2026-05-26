@@ -252,11 +252,10 @@
   left: 48%;
   top: 60%;
   width: 32%;
-  height: 1%;
+  height: 2%;
   z-index: var(--z-hits);
   cursor: pointer;
   pointer-events: auto;
-  outline: solid 1px;
   border: none;
   background: transparent;
   -webkit-app-region: no-drag;
@@ -351,7 +350,6 @@
   z-index: var(--z-volume);
   pointer-events: auto;
   overflow: visible;
-  border: solid 1px black;
 }
 
 /* Main slider background PNG — position relative to the control */
@@ -376,7 +374,7 @@
   height: 18%;
   bottom: calc(var(--vol-level) * 78%);
   /* keep thumb above track */
-  z-index: 11;
+  z-index: 15;
 }
 
 /* Volume down PNG */
@@ -391,7 +389,7 @@
   
   pointer-events: none;
   /* ensure the volume-down image renders above the slider */
-  z-index: 12;
+  z-index: 15;
 }
 
 /* Actual draggable hit area */
@@ -409,10 +407,10 @@
   top: 5%;
   width: 30%;
   height: 90%;
-  z-index: 15;
+  z-index: 12;
   cursor: ns-resize;
-  background: transparent;
-  border: solid 1px;
+  background: grey;
+  border-radius: 10%;
 }
 
 /* ── Hit targets (invisible — PNG is the only visible control) ─ */
