@@ -392,6 +392,8 @@ function createWindow() {
     },
   });
 
+  win.setAlwaysOnTop(true, 'floating');
+
   centerWindow(win);
   win.setAspectRatio(ASPECT);
 
