@@ -587,8 +587,8 @@
   left: 8%;
   top: 3.5%;
   font-family: 'Rainyhearts', monospace;
-  font-size: clamp(12px, 2vw, 18px);
-  color: var(--color-title);
+  font-size: clamp(13px, 2vw, 18px);
+  color: rgb(73, 73, 73);
   z-index: var(--z-chrome);
   -webkit-app-region: drag;
   pointer-events: none;
