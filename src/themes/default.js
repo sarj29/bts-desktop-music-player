@@ -32,11 +32,13 @@ export const DESIGN_HEIGHT = 1122;
 /** Add your YouTube playlist URLs here for one-click album loads */
 export const BTS_PRESET_PLAYLISTS = [
   { id: 'arirang', name: 'ARIRANG', url: 'https://youtube.com/playlist?list=PLxA687tYuMWh5kVzLXuL8VGeb0sS8dayD&si=FC5iNcQozk-O7TCh' },
-  { id: 'proof', name: 'Proof', url: '' },
+  { id: 'proof', name: 'Proof', url: 'https://youtube.com/playlist?list=PLBxlGtcUp1gm3bqtXKNXnB5VSwG6vyq62&si=bhdPDqkPBINWkKWh' },
   { id: 'be', name: 'BE', url: 'https://youtube.com/playlist?list=PLvwxw_LiHMjhKgL7AjgOWUzI79xNDC2YM&si=q8-_dEXDR2E5AsDh' },
-  { id: 'ly', name: 'Love Yourself', url: '' },
-  { id: 'wings', name: 'Wings', url: '' },
+  { id: 'ly1', name: 'Love Yourself - ANSWER', url: 'https://youtube.com/playlist?list=PL-eVSSxdwRmy7LU6pMt5qg0AKFzFIjvE4&si=2CYPxWvB-zbEgZl1' },
+  { id: 'ly2', name: 'Love Yourself - TEAR', url: 'https://youtube.com/playlist?list=PLW7MYRm8xM-VSZ4dznBbfSp7F8Q56jWQK&si=K5V0NcuXb_zmPGCI' },
+  { id: 'wings', name: 'Wings', url: 'https://youtube.com/playlist?list=PLMNMmvIC2uGaKqKZTKbTts43iUEGC8jyv&si=JqmGdyU7443en2xw' },
   { id: 'daw', name: 'Dark & Wild', url: 'https://youtube.com/playlist?list=PLgNAVqTsP7oe-NnLTHZAmRrakj6spxn6V&si=I61bH3pATTb5plvH' },
+  { id: 'mos', name: 'Map of the Soul : 7', url: 'https://youtube.com/playlist?list=PLmdI8z-p8UBOWbPRXHBw1z6XulHVt901N&si=WNwrBaFYZn-syME8' },
 ];
 
 const defaultTheme = {

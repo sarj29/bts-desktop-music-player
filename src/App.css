@@ -85,8 +85,6 @@
 .player-frame {
   position: absolute;
   inset: 0;
-  /* Make the visible frame image act as the draggable titlebar */
-  -webkit-app-region: drag;
   pointer-events: auto;
   user-select: none;
   cursor: grab;
