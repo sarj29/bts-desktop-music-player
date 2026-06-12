@@ -349,7 +349,7 @@ function createWindow() {
     titleBarStyle: 'hidden',
     backgroundColor: '#00000000',
     hasShadow: false,
-    icon: path.join(__dirname, '..', 'src', 'assets', 'bts', 'frame.png'),
+    icon: 'build/icon.ico',
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),
       contextIsolation: true,
